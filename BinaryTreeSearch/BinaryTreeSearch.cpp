@@ -1,9 +1,9 @@
 ﻿// BinaryTreeSearch.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include <random>
 using namespace std;
 int tabs = 0; //Для создания отступов
 //Кол-во отступов высчитывается по кол-ву рекурсивного вхождения при выводе в фукцию print_tree
@@ -233,11 +233,10 @@ Search_tree& Search_tree::operator=(Search_tree x)
     }
 }
 
-
-
-int main(int& nodeKey) 
+int main() 
 {
     setlocale(LC_ALL, "Ru");
+    int nodeKey  = 10;
     Node* root = nullptr;    // Объявляем структуру дерева
     int a, n; 
     Search_tree tree(1);
@@ -245,19 +244,19 @@ int main(int& nodeKey)
     cin >> n;
     for (int i = 0; i < n; i++)
     {
-        cout << "Введите узел " << i + 1 << ": ";
-        cin >> a;
+       /* cout << "Введите узел " << i + 1 << ": ";*/
+        a = tree.FindMin(root) + rand() % (tree.FindMax(root) - tree.FindMin(root)+1);
         tree.createIdealTree(n,nodeKey);
         tree.inorder(root);
         tree.insert(a);
     }
 
-    Node* print(root);    
+    Node* print_tree(root);    
     tree.print();
-    Search_tree print_tree(); 
-    Search_tree FindMax();
-    Search_tree FindMin();
+    tree.FindMax(root);
+    tree.FindMin(root);
     cin.get();  cin.get();
     return 0;
 
 }
+
